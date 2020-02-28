@@ -1,6 +1,7 @@
 import java.util.*;
 public class BSTIter {
     static Node root;
+    static int counter;
 
     static class Node{
         int value;
@@ -12,6 +13,7 @@ public class BSTIter {
             left = null;
             right = null;
         }
+
     }
 
     public static void main(String[] args){
@@ -20,7 +22,7 @@ public class BSTIter {
         insertIter(3);
         insertIter(2);
         insertIter(4);
-        insertIter(7);;
+        insertIter(7);
         insertIter(8);
         insertIter(6);
 
@@ -51,6 +53,7 @@ public class BSTIter {
         Node currentRoot = root;
         Node insertAfter = null;
         while(currentRoot != null){
+            counter++;
             insertAfter = currentRoot;
             if(value < currentRoot.value){
                 currentRoot = currentRoot.left;

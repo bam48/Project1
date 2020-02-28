@@ -5,7 +5,7 @@ public class ArrayOfIntegers {
         getSortedArray(5);
     }
 
-    public static void getRandomArray(int n){
+    public static int[] getRandomArray(int n){
         int[] array = new int[n];
         Random random = new Random();
         for(int i = 0; i < n; i++){
@@ -19,22 +19,29 @@ public class ArrayOfIntegers {
                 inArray = false;
             }
         }
-
+        return array;
+    /*
         for(int num: array){
             System.out.print(num + " ");
         }
         System.out.println();
+
+     */
     }
 
-    public static void getSortedArray(int n){
+    public static int[] getSortedArray(int n){
         int[] array = new int[n];
         for(int i = 0; i < n; i++){
             array[i] = n - i;
         }
+        return array;
+        /*
         for(int num: array){
             System.out.print(num + " ");
         }
         System.out.println();
+
+         */
     }
 
     private static boolean inArray(int value, int[] array){
