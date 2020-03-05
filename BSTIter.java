@@ -64,9 +64,11 @@ public class BSTIter {
         }
         if(value < insertAfter.value){
             insertAfter.left = node;
+            counter++;
         }
         else{
             insertAfter.right = node;
+            counter++;
         }
         return root;
     }

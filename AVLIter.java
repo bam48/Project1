@@ -23,9 +23,11 @@ public class AVLIter {
         insertIter(5);
         insertIter(15);
         insertIter(4);
-        insertIter(2);
+        insertIter(3);
         insertIter(16);
+        insertIter(2);
         insertIter(1);
+        deleteIter(5);
 
         System.out.println("Root:" + root.value);
         System.out.println("Root.left:" + root.left.value);
@@ -33,24 +35,9 @@ public class AVLIter {
         System.out.println("Root.left.left:" + root.left.left.value);
         System.out.println("Root.left.right:" + root.left.right.value);
         System.out.println("Root.right.right:" + root.right.right.value);
-        System.out.println("Root.left.left.left:" + root.left.left.left.value);
+        System.out.println("Root.left.right.left:" + root.left.right.left.value);
 
-        /*
-        System.out.println();
-        deleteIter(4);
-        System.out.println("Root:" + root.value + " Height:" + root.height);
-        System.out.println("Root.left:" + root.left.value + " Height:" + root.left.height);
-        System.out.println("Root.right:" + root.right.value + " Height:" + root.right.height);
-        System.out.println("Root.left.left:" + root.left.left.value + " Height:" + root.left.left.height);
-        System.out.println("Root.left.right:" + root.left.right.value + " Height:" + root.left.right.height);
-        System.out.println("Root.right.right:" + root.right.right.value + " Height:" + root.right.right.height);
 
-        System.out.println("Prev 2:" + findPrevIter(2).value);
-        System.out.println("Next 2:" + findNextIter(2).value);
-        System.out.println("Max: " + findMaxIter().value);
-        System.out.println("Min: " + findMinIter().value);
-
-         */
     }
 
     public static void insertIter(int value){
@@ -85,12 +72,13 @@ public class AVLIter {
         else{
             insertAfter.right = node;
         }
+        counter++;
         balanceAfterInsert(path, value);
 
         return root;
     }
 
-     public static void deleteIter(int value){
+    public static void deleteIter(int value){
         root = deleteIter(root, value);
     }
 
@@ -154,6 +142,7 @@ public class AVLIter {
 
     private static void balanceAfterInsert(Stack<Node> path, int value){
         while(!path.isEmpty()){
+            counter++;
             Node curr = path.pop();
             Node parent = getParent(curr.value);
 
