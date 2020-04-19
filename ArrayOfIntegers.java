@@ -20,13 +20,6 @@ public class ArrayOfIntegers {
             }
         }
         return array;
-    /*
-        for(int num: array){
-            System.out.print(num + " ");
-        }
-        System.out.println();
-
-     */
     }
 
     public static int[] getSortedArray(int n){

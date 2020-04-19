@@ -15,32 +15,68 @@ public class BSTRec {
     }
 
     public static void main(String[] args){
-        System.out.println("Recursive BST Functions");
-        insertRec(10);
-        insertRec(8);
-        insertRec(12);
-        insertRec(9);
-        insertRec(11);
-        insertRec(13);
-        inorderRec();
-        deleteRec(10);
-        inorderRec();
 
-        System.out.println("Find Prev 9: " + findPrevRec(9).value);
-        System.out.println("Find Next 9: " + findNextRec(9).value);
-        deleteRec(9);
-        inorderRec();
-        System.out.println("Min: " + findMinRec().value);
-        System.out.println("Max: " + findMaxRec().value);
+        ArrayList<Integer> out = new ArrayList<Integer>();
+
+        BSTRec tree1 = new BSTRec();
+        tree1.root = new BSTRec.Node(2);
+        tree1.root = tree1.insertRec(tree1.root, 1);
+        tree1.root = tree1.insertRec(tree1.root, 4);
+        System.out.println("Tree 1");
+        tree1.inorderRec();
+        out.addAll(tree1.inorder(tree1.root));
+
+        BSTRec tree2 = new BSTRec();
+        tree2.root = new BSTRec.Node(1);
+        tree2.root = tree2.insertRec(tree2.root, 0);
+        tree2.root = tree2.insertRec(tree2.root, 3);
+        System.out.println("Tree 2");
+        tree2.inorderRec();
+        out.addAll(tree2.inorder(tree2.root));
+
+        System.out.println("Both");
+        System.out.println(Arrays.toString(out.toArray()));
 
 
+
+    }
+
+    public static boolean isAlmostBst(Node node){
+        ArrayList<Integer> ans = inorder(node);
+        System.out.println(Arrays.toString(ans.toArray()));
+        int error = 0;
+        for (int i = 1; i < ans.size(); i++) {
+            if(ans.get(i) < ans.get(i - 1)){
+                error += 1;
+            }
+            if(error > 1)
+                return false;
+        }
+        return true;
+    }
+
+    public static Node isBST(Node root){
+        return isBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    public static Node isBSTUtil(Node curr, int min, int max){
+        if(curr == null)
+            return root;
+
+        if(curr.value < min || curr.value > max)
+            return curr;
+
+        isBSTUtil(curr.left, min, curr.value);
+        isBSTUtil(curr.right, curr.value, max);
+
+        return root;
     }
 
     public static void insertRec(int value){
         root = insertRec(root, value);
     }
 
-    private static Node insertRec(Node root, int value){
+    public static Node insertRec(Node root, int value){
         if(root == null) {
             root = new Node(value);
             return root;
@@ -86,7 +122,6 @@ public class BSTRec {
     }
 
     public static Node findNextRec(int value){
-        //Node node = search(value);
         return findNextRec(root, value, null);
     }
 
@@ -182,7 +217,22 @@ public class BSTRec {
         }
     }
 
-    //For testing purposes
+    public static ArrayList<Integer> inorder(Node root){
+        ArrayList<Integer> num = new ArrayList<Integer>();
+        return inorder(root, num);
+    }
+
+    private static ArrayList<Integer> inorder(Node root, ArrayList<Integer> num) {
+        if (root != null) {
+            inorder(root.left, num);
+            num.add(root.value);
+            inorder(root.right, num);
+        }
+        return num;
+    }
+
+    //Prints out the nodes of the tree in In Order recursively.
+    //Left node until it reaches a leaf, its root, and its right node.
     public static void inorderRec(){
         inorderRec(root);
         System.out.println();
@@ -195,6 +245,8 @@ public class BSTRec {
             inorderRec(root.right);
         }
     }
+
+
 
 
 }

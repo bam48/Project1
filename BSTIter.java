@@ -17,26 +17,24 @@ public class BSTIter {
     }
 
     public static void main(String[] args){
-        System.out.println("Iterative BST Functions");
-        insertIter(5);
-        insertIter(3);
-        insertIter(2);
-        insertIter(4);
-        insertIter(7);
-        insertIter(8);
-        insertIter(6);
+        BSTIter tree1 = new BSTIter();
+        tree1.root = new Node(2);
+        tree1.root = tree1.insertIter(tree1.root, 1);
+        tree1.root = tree1.insertIter(tree1.root, 4);
+        tree1.inorderRec();
 
-        //inOrderRec() not used for functionality. Only for testing code. Borrowed from BSTRec
-        inorderRec();
-        deleteIter(7);
-        inorderRec();
+        BSTIter tree2 = new BSTIter();
+        tree2.root = new Node(1);
+        tree2.root = tree2.insertIter(tree2.root, 0);
+        tree2.root = tree2.insertIter(tree2.root, 3);
+        tree2.inorderRec();
 
-        deleteIter(3);
-        inorderRec();
-        System.out.println("Prev for 5: " + findPrevIter(5).value);
-        System.out.println("Next for 5: " + findNextIter(5).value);
-        System.out.println("Min: " + findMinIter().value);
-        System.out.println("Max: " + findMaxIter().value);
+        System.out.println(tree1.root.value);
+        System.out.println(tree2.root.value);
+
+        tree1.inorderRec();
+        tree2.inorderRec();
+
 
     }
 
@@ -243,7 +241,6 @@ public class BSTIter {
         return current;
     }
 
-    //For testing purposes. Not called in Iter functions
     public static void inorderRec(){
         inorderRec(root);
         System.out.println();
